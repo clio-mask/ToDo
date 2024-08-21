@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { formatDistanceToNow } from "date-fns";
 
 const ToDoItem = (props) => {
   const [editedTask, setEditedTask] = useState({ title: props.task.title });
+  const [dateCreated, setDateCreated] = useState(null);
 
   const toggleComplete = () => {
     const updatedTask = {
@@ -35,6 +37,19 @@ const ToDoItem = (props) => {
     else return null;
   };
 
+  useEffect(() => {
+    const updateDate = () => {
+      setDateCreated(
+        formatDistanceToNow(new Date(props.task.id), {
+          includeSeconds: true,
+        })
+      );
+    };
+    updateDate();
+    const interval = setInterval(updateDate, 1000);
+    return () => clearInterval(interval);
+  }, [props.task.id]);
+
   return (
     <li className={getClassName()}>
       <div className="view">
@@ -46,6 +61,7 @@ const ToDoItem = (props) => {
         />
         <label>
           <span className="description">{props.task.title}</span>
+          <span class="created">{`created ${dateCreated}`}</span>
         </label>
         <button className="icon icon-edit" onClick={toggleEdit}></button>
         <button
