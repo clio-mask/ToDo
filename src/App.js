@@ -1,8 +1,8 @@
-import "./App.css";
-import React, { useState, useMemo } from "react";
-import List from "./components/List/List";
-import ToDoFooter from "./components/ToDoFooter/ToDoFooter";
-import ToDoNewTaskForm from "./components/ToDoNewTaskForm/ToDoNewTaskForm";
+import './App.css';
+import React, { useState, useMemo } from 'react';
+import List from './components/List/List';
+import ToDoFooter from './components/ToDoFooter/ToDoFooter';
+import ToDoNewTaskForm from './components/ToDoNewTaskForm/ToDoNewTaskForm';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -10,8 +10,8 @@ function App() {
 
   const filteredTasks = useMemo(() => {
     if (activeTab === 0) return tasks;
-    else if (activeTab === 1) return tasks.filter((t) => t.status === "active");
-    else return tasks.filter((t) => t.status === "complete");
+    else if (activeTab === 1) return tasks.filter((t) => t.status === 'active');
+    else return tasks.filter((t) => t.status === 'complete');
   }, [tasks, activeTab]);
 
   const addTask = (newTask) => {
@@ -23,13 +23,11 @@ function App() {
   };
 
   const updateTask = (updatedTask) => {
-    setTasks((tasks) =>
-      tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
-    );
+    setTasks((tasks) => tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)));
   };
 
   const clearCompleted = () => {
-    setTasks(tasks.filter((t) => t.status !== "complete"));
+    setTasks(tasks.filter((t) => t.status !== 'complete'));
   };
 
   return (
@@ -39,13 +37,9 @@ function App() {
         <ToDoNewTaskForm add={addTask} />
       </header>
       <section className="main">
-        <List
-          tasks={filteredTasks}
-          remove={removeTask}
-          updateTask={updateTask}
-        />
+        <List tasks={filteredTasks} remove={removeTask} updateTask={updateTask} />
         <ToDoFooter
-          count={tasks.filter((t) => t.status === "active").length}
+          count={tasks.filter((t) => t.status === 'active').length}
           filter={setActiveTab}
           activeTab={activeTab}
           clear={clearCompleted}
