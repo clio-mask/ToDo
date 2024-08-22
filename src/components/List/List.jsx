@@ -1,19 +1,15 @@
-import React from "react";
-import ToDoItem from "../ToDoItem/ToDoItem";
+import React from 'react';
 
-const List = ({ remove, tasks, updateTask }) => {
+import ToDoItem from '../ToDoItem/ToDoItem';
+
+function List({ remove, tasks, updateTask }) {
   return (
     <ul className="todo-list">
       {tasks.map((task) => (
-        <ToDoItem
-          remove={remove}
-          key={task.id}
-          task={task}
-          updateTask={updateTask}
-        />
+        <ToDoItem remove={remove} key={task.id} task={task} updateTask={updateTask} />
       ))}
     </ul>
   );
-};
+}
 
 export default List;

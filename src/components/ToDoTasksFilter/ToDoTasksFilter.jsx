@@ -1,7 +1,9 @@
-import React from "react";
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/button-has-type */
+import React from 'react';
 
-const ToDoTasksFilter = ({ filter, activeTab, clear }) => {
-  const tabs = ["All", "Active", "Completed"];
+function ToDoTasksFilter({ filter, activeTab, clear }) {
+  const tabs = ['All', 'Active', 'Completed'];
 
   const handleTabClick = (tabIndex) => {
     filter(tabIndex);
@@ -13,7 +15,7 @@ const ToDoTasksFilter = ({ filter, activeTab, clear }) => {
         {tabs.map((tab, index) => (
           <li key={index}>
             <button
-              className={activeTab === index ? "selected" : null}
+              className={activeTab === index ? 'selected' : null}
               onClick={() => handleTabClick(index)}
             >
               {tab}
@@ -26,6 +28,6 @@ const ToDoTasksFilter = ({ filter, activeTab, clear }) => {
       </button>
     </>
   );
-};
+}
 
 export default ToDoTasksFilter;

@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState, useMemo } from 'react';
+
 import List from './components/List/List';
 import ToDoFooter from './components/ToDoFooter/ToDoFooter';
 import ToDoNewTaskForm from './components/ToDoNewTaskForm/ToDoNewTaskForm';
@@ -10,20 +11,20 @@ function App() {
 
   const filteredTasks = useMemo(() => {
     if (activeTab === 0) return tasks;
-    else if (activeTab === 1) return tasks.filter((t) => t.status === 'active');
-    else return tasks.filter((t) => t.status === 'complete');
+    if (activeTab === 1) return tasks.filter((t) => t.status === 'active');
+    return tasks.filter((t) => t.status === 'complete');
   }, [tasks, activeTab]);
 
   const addTask = (newTask) => {
-    setTasks((tasks) => [...tasks, newTask]);
+    setTasks((tsk) => [...tsk, newTask]);
   };
 
   const removeTask = (task) => {
-    setTasks((tasks) => tasks.filter((t) => t.id !== task.id));
+    setTasks(tasks.filter((t) => t.id !== task.id));
   };
 
   const updateTask = (updatedTask) => {
-    setTasks((tasks) => tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)));
+    setTasks(tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)));
   };
 
   const clearCompleted = () => {
